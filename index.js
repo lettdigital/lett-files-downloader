@@ -45,7 +45,7 @@ class FilesDownloader {
         return new Promise(resolve => {
             const { parallelDownloads } = this;
             for (let index = 0; index < parallelDownloads; index++) {
-                this.eatUrls(index).then(() => {
+                this.downloadQueue(index).then(() => {
                     if (this.finishes === parallelDownloads) {
                         resolve();
                     }
@@ -54,7 +54,7 @@ class FilesDownloader {
         });
     }
 
-    async eatUrls(index) {
+    async downloadQueue(index) {
         if (this.urls.length) {
             const url = this.urls.shift();
             try {
@@ -63,7 +63,7 @@ class FilesDownloader {
             } catch (err) {
                 this.finalStatus.push({ key: url.key, status: 'FAIL' });
             } finally {
-                await this.eatUrls(index);
+                await this.downloadQueue(index);
             }
         } else {
             this.finishes++;

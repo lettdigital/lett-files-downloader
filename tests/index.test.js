@@ -4,14 +4,25 @@ const fs = require('fs');
 const path = './tmp';
 const imgUrl = 'https://i.imgur.com/wYTCtRu.jpg';
 
+const batchImgs = [
+    { url: 'https://i.imgur.com/wYTCtRu.jpg', filename: '1.jpg', key: 1 },
+    { url: 'https://i.imgur.com/wYTCtRud.jpg', filename: '2.jpg', key: 2 },
+    { url: 'https://i.imgur.com/wYTCtRu.jpg', filename: '3.jpg', key: 3 },
+    { url: 'https://i.imgur.com/wYTCtRu.jpg', filename: '4.jpg', key: 4 },
+    { url: 'https://i.imgur.com/wYTCtRu.jpg', filename: '5.jpg', key: 5 },
+    { url: 'https://i.imgur.com/wYTCtRu.jpg', filename: '6.jpg', key: 6 },
+];
+
 describe('Testing FilesDownloader', () => {
     beforeAll(() => {
         deleteFolderRecursive(path);
     });
+    beforeEach(() => {
+        fs.mkdirSync(path, { recursive: true });
+    });
 
     test('Download a file with filename', async () => {
         const filename = 'cat.jpg';
-        fs.mkdirSync(path, { recursive: true });
         const filesDownloader = new FilesDownloader({ path });
         await filesDownloader.downloadFile({ url: imgUrl, filename });
 
@@ -21,7 +32,6 @@ describe('Testing FilesDownloader', () => {
     });
 
     test('Download a file with no filename', async () => {
-        fs.mkdirSync(path, { recursive: true });
         const filesDownloader = new FilesDownloader({ path });
         const filename = filesDownloader.getFilename(imgUrl);
         await filesDownloader.downloadFile({ url: imgUrl });
@@ -30,6 +40,15 @@ describe('Testing FilesDownloader', () => {
 
         expect(exist).toBeTruthy();
     });
+
+    test('Download batch images', async () => {
+        const filesDownloader = new FilesDownloader({ path, parallelDownloads: 4 });
+
+        const res = await filesDownloader.downloadBatch(batchImgs);
+
+        expect(res[0].status).toBe('SUCCESS');
+        expect(res[1].status).toBe('FAIL');
+    }, 20000);
 
     afterEach(() => {
         deleteFolderRecursive(path);
