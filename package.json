@@ -4,7 +4,9 @@
   "description": "Parallel files downloader",
   "main": "index.js",
   "scripts": {
-    "jsdoc": "./node_modules/.bin/jsdoc -c jsdoc.json"
+    "jsdoc": "./node_modules/.bin/jsdoc -c jsdoc.json",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",

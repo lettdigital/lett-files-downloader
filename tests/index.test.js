@@ -46,8 +46,19 @@ describe('Testing FilesDownloader', () => {
 
         const res = await filesDownloader.downloadBatch(batchImgs);
 
-        expect(res[0].status).toBe('SUCCESS');
-        expect(res[1].status).toBe('FAIL');
+        let fails = 0;
+        let success = 0;
+
+        res.forEach(v => {
+            if (v.status === 'SUCCESS') {
+                success++;
+            } else {
+                fails++;
+            }
+        });
+
+        expect(fails).toBe(1);
+        expect(success).toBe(5);
     }, 20000);
 
     afterEach(() => {
