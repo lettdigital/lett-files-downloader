@@ -2,22 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: FilesDownloader</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FilesDownloader - Documentation</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
-
 <body>
 
-<div id="main">
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-    <h1 class="page-title">Class: FilesDownloader</h1>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="FilesDownloader.html">FilesDownloader</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#downloadBatch">downloadBatch</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#setFileInUrl">setFileInUrl</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#setHeaders">setHeaders</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#setLog">setLog</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#setParallelDownloads">setParallelDownloads</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="FilesDownloader.html#setPath">setPath</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">FilesDownloader</h1>
+    
 
     
 
@@ -28,7 +41,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>FilesDownloader<span class="signature">(options)</span><span class="type-signature"></span></h2>
+        <h2>
+        FilesDownloader
+        </h2>
         
     
 </header>
@@ -37,12 +52,11 @@
     <div class="container-overview">
     
         
+<div class="section-method">
 
     
 
-    
     <h4 class="name" id="FilesDownloader"><span class="type-signature"></span>new FilesDownloader<span class="signature">(options)</span><span class="type-signature"></span></h4>
-    
 
     
 
@@ -51,282 +65,6 @@
 <div class="description">
     A class to manager multiple simultaneous downloads
 </div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">A configuration object
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">A path to download files</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>parallelDownloads</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    10
-                
-                </td>
-            
-
-            <td class="description last">Max simultaneous downloads</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fileInUrl</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    /((?!\/)[\w\_\-\+]+\.(\w{3,5})$)/i
-                
-                </td>
-            
-
-            <td class="description last">A regex pattern to find filename on URL</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>log</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Console</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    console
-                
-                </td>
-            
-
-            <td class="description last">A log instance</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>headers</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">An optional header to include on each download</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -380,62 +118,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="downloadBatch"><span class="type-signature">(async) </span>downloadBatch<span class="signature">(urls)</span><span class="type-signature"> &rarr; {Array.&lt;downloaderResult>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    An asyncronous downloader files
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -461,13 +143,13 @@
 
         <tr>
             
-                <td class="name"><code>urls</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type"><code>Object</code></span>
 
 
             
@@ -477,9 +159,10 @@
 
             
 
-            <td class="description last">Files to download
-                <h6>Properties</h6>
+            <td class="description last">
+                A configuration object
                 
+                    
 
 <table class="params">
     <thead>
@@ -495,6 +178,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -505,13 +190,13 @@
 
         <tr>
             
-                <td class="name"><code>url</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>String</code></span>
 
 
             
@@ -528,21 +213,28 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last">A file url</td>
+            <td class="description last">
+                A path to download files
+                
+            </td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>filename</code></td>
+                <td class="name"><code>parallelDownloads</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>Number</code></span>
 
 
             
@@ -561,21 +253,30 @@
             
 
             
+                <td class="default">
+                
+                    10
+                
+                </td>
+            
 
-            <td class="description last">An optional custom filename</td>
+            <td class="description last">
+                Max simultaneous downloads
+                
+            </td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>fileInUrl</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>RegExp</code></span>
 
 
             
@@ -583,6 +284,8 @@
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -592,14 +295,98 @@
             
 
             
+                <td class="default">
+                
+                    /((?!\/)[\w\_\-\+]+\.(\w{3,5})$)/i
+                
+                </td>
+            
 
-            <td class="description last">A key to identify download status</td>
+            <td class="description last">
+                A regex pattern to find filename on URL
+                
+            </td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>log</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Console</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    console
+                
+                </td>
+            
+
+            <td class="description last">
+                A log instance
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">
+                An optional header to include on each download
+                
             </td>
         </tr>
 
@@ -607,6 +394,63 @@
     </tbody>
 </table>
 
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="downloadBatch"><span class="type-signature">(async) </span>downloadBatch<span class="signature">(urls)</span><span class="type-signature"> &rarr; {Array.&lt;downloaderResult>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    An asyncronous downloader files
+</div>
 
 
 
@@ -660,64 +504,6 @@
 
 
 
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    A status of each download
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;downloaderResult></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setFileInUrl"><span class="type-signature"></span>setFileInUrl<span class="signature">(fileInUrl)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A setter for lookup pattern
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -743,13 +529,13 @@
 
         <tr>
             
-                <td class="name"><code>fileInUrl</code></td>
+                <td class="name"><code>urls</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">RegExp</span>
+<span class="param-type"><code>Array.&lt;Object></code></span>
 
 
             
@@ -759,13 +545,203 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                Files to download
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                A file url
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                An optional custom filename
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                A key to identify download status
+                
+            </td>
         </tr>
 
     
     </tbody>
 </table>
 
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Array.&lt;downloaderResult></code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    A status of each download
+</div>
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="setFileInUrl"><span class="type-signature"></span>setFileInUrl<span class="signature">(fileInUrl)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A setter for lookup pattern
+</div>
 
 
 
@@ -819,42 +795,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setHeaders"><span class="type-signature"></span>setHeaders<span class="signature">(headers)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A setter for headers
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -880,13 +820,13 @@
 
         <tr>
             
-                <td class="name"><code>headers</code></td>
+                <td class="name"><code>fileInUrl</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><code>RegExp</code></span>
 
 
             
@@ -896,13 +836,47 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                
+                
+            </td>
         </tr>
 
     
     </tbody>
 </table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="setHeaders"><span class="type-signature"></span>setHeaders<span class="signature">(headers)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A setter for headers
+</div>
 
 
 
@@ -956,42 +930,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setLog"><span class="type-signature"></span>setLog<span class="signature">(log)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A setter for path
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -1017,13 +955,13 @@
 
         <tr>
             
-                <td class="name"><code>log</code></td>
+                <td class="name"><code>headers</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Console</span>
+<span class="param-type"><code>Object</code></span>
 
 
             
@@ -1033,13 +971,47 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                
+                
+            </td>
         </tr>
 
     
     </tbody>
 </table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="setLog"><span class="type-signature"></span>setLog<span class="signature">(log)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A setter for path
+</div>
 
 
 
@@ -1093,42 +1065,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setParallelDownloads"><span class="type-signature"></span>setParallelDownloads<span class="signature">(parallelDownloads)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A setter for max simultaneous downloads
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -1154,13 +1090,13 @@
 
         <tr>
             
-                <td class="name"><code>parallelDownloads</code></td>
+                <td class="name"><code>log</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type"><code>Console</code></span>
 
 
             
@@ -1170,13 +1106,47 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                
+                
+            </td>
         </tr>
 
     
     </tbody>
 </table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="setParallelDownloads"><span class="type-signature"></span>setParallelDownloads<span class="signature">(parallelDownloads)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A setter for max simultaneous downloads
+</div>
 
 
 
@@ -1230,42 +1200,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setPath"><span class="type-signature"></span>setPath<span class="signature">(path)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A setter for path
-</div>
-
-
-
-
-
-
-
-
-
     <h5>Parameters:</h5>
     
 
@@ -1291,13 +1225,13 @@
 
         <tr>
             
-                <td class="name"><code>path</code></td>
+                <td class="name"><code>parallelDownloads</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>Number</code></span>
 
 
             
@@ -1307,13 +1241,47 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                
+                
+            </td>
         </tr>
 
     
     </tbody>
 </table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="setPath"><span class="type-signature"></span>setPath<span class="signature">(path)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A setter for path
+</div>
 
 
 
@@ -1367,6 +1335,56 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1378,6 +1396,12 @@
 
 
 
+
+
+
+
+
+</div>
         
     
 
@@ -1386,6 +1410,7 @@
 
         
                 
+<div class="section-members">
 <h4 class="name" id="~downloaderResult">downloaderResult</h4>
 
 
@@ -1394,18 +1419,6 @@
 <div class="description">
     A downloader result definition schema
 </div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
 
 
 
@@ -1445,7 +1458,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>String</code></span>
 
 
             
@@ -1462,6 +1475,8 @@
             <td class="description last">A file key</td>
         </tr>
 
+        
+
     
 
         <tr>
@@ -1472,7 +1487,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><code>String</code></span>
 
 
             
@@ -1490,6 +1505,8 @@
 
             <td class="description last">A status of download</td>
         </tr>
+
+        
 
     
     </tbody>
@@ -1540,8 +1557,21 @@
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Object</code></span>
 
 
+        </li>
+    </ul>
+
+
+
+
+
+</div>
 
             
     
@@ -1556,17 +1586,13 @@
 
 </div>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="FilesDownloader.html">FilesDownloader</a></li></ul>
-</nav>
-
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu May 23 2019 15:52:02 GMT-0300 (Brasilia Standard Time)
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Thu May 23 2019 16:01:29 GMT-0300 (Brasilia Standard Time) using the Minami theme.
 </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
 </body>
 </html>
