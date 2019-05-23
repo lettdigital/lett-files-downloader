@@ -12,8 +12,8 @@ class FilesDownloader {
         this.setHeaders(headers);
         this.setFileInUrl(fileInUrl);
         this.buffer = [];
-        this.finishes = 0;
-        this.finalStatus = [];
+        this.queueFinished = 0;
+        this.downloadStatus = [];
     }
 
     setPath(path) {
@@ -38,7 +38,7 @@ class FilesDownloader {
         // Initialize buffer
         await this.downloadManager();
 
-        return this.finalStatus;
+        return this.downloadStatus;
     }
 
     downloadManager() {
@@ -46,7 +46,7 @@ class FilesDownloader {
             const { parallelDownloads } = this;
             for (let index = 0; index < parallelDownloads; index++) {
                 this.downloadQueue(index).then(() => {
-                    if (this.finishes === parallelDownloads) {
+                    if (this.queueFinished === parallelDownloads) {
                         resolve();
                     }
                 });
@@ -59,14 +59,14 @@ class FilesDownloader {
             const url = this.urls.shift();
             try {
                 await this.downloadFile(url);
-                this.finalStatus.push({ key: url.key, status: 'SUCCESS' });
+                this.downloadStatus.push({ key: url.key, status: 'SUCCESS' });
             } catch (err) {
-                this.finalStatus.push({ key: url.key, status: 'FAIL' });
+                this.downloadStatus.push({ key: url.key, status: 'FAIL' });
             } finally {
                 await this.downloadQueue(index);
             }
         } else {
-            this.finishes++;
+            this.queueFinished++;
         }
     }
 
