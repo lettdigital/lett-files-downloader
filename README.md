@@ -1,4 +1,4 @@
-# # lett-files-dowloader
+# lett-files-dowloader
 
 A Lett package to download multiple files simultaneously!
 
