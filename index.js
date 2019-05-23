@@ -11,6 +11,9 @@ class FilesDownloader {
         this.setLog(log);
         this.setHeaders(headers);
         this.setFileInUrl(fileInUrl);
+        this.buffer = [];
+        this.finishes = 0;
+        this.finalStatus = [];
     }
 
     setPath(path) {
@@ -30,12 +33,41 @@ class FilesDownloader {
     }
 
     async downloadBatch(urls) {
-        const { path, log, parallelDownloads } = this;
-
-        const buffer = [];
+        this.urls = urls;
 
         // Initialize buffer
-        buffer.splice(0, 0, urls.splice(0, parallelDownloads));
+        await this.downloadManager();
+
+        return this.finalStatus;
+    }
+
+    downloadManager() {
+        return new Promise(resolve => {
+            const { parallelDownloads } = this;
+            for (let index = 0; index < parallelDownloads; index++) {
+                this.eatUrls(index).then(() => {
+                    if (this.finishes === parallelDownloads) {
+                        resolve();
+                    }
+                });
+            }
+        });
+    }
+
+    async eatUrls(index) {
+        if (this.urls.length) {
+            const url = this.urls.shift();
+            try {
+                await this.downloadFile(url);
+                this.finalStatus.push({ key: url.key, status: 'SUCCESS' });
+            } catch (err) {
+                this.finalStatus.push({ key: url.key, status: 'FAIL' });
+            } finally {
+                await this.eatUrls(index);
+            }
+        } else {
+            this.finishes++;
+        }
     }
 
     downloadFile({ url, filename }) {
@@ -56,9 +88,8 @@ class FilesDownloader {
                         })
                         .pipe(fs.createWriteStream(`${path}/${filename}`))
                         .on('close', () => {
-                            log.warn('Zero byte file');
-
                             if (!size) {
+                                log.warn('Zero byte file');
                                 try {
                                     fs.unlink(`${path}/${filename}`);
                                 } catch (errorUnlink) {
@@ -70,7 +101,9 @@ class FilesDownloader {
                                 resolve(filename);
                             }
                         });
-                } else reject({ msg: 'File not exists' });
+                } else {
+                    reject({ msg: 'File not exists' });
+                }
             });
         });
     }
