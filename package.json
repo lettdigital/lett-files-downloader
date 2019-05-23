@@ -21,7 +21,6 @@
     "jest": "^23.6.0",
     "jest-environment-node": "^24.5.0",
     "jsdoc": "^3.5.5",
-    "minami": "^1.2.3",
     "prettier": "1.16.4"
   },
   "author": "deleuterio",
