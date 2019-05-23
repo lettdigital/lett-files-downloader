@@ -1,8 +1,7 @@
 {
     "source": {
       "include": [
-        "index.js",
-        "app"
+        "index.js"
       ],
       "exlude": ["node_modules", ".git"]
     },
