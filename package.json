@@ -1,0 +1,32 @@
+{
+  "name": "lett-files-downloader",
+  "version": "0.0.0",
+  "description": "Parallel files downloader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deleuterio/lett-files-downloader.git"
+  },
+  "keywords": [
+    "files",
+    "download",
+    "batch"
+  ],
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^23.6.0",
+    "jest-environment-node": "^24.5.0",
+    "jsdoc": "^3.5.5",
+    "prettier": "1.16.4"
+  },
+  "author": "deleuterio",
+  "license": "SEE LICENCE IN LICENCE",
+  "bugs": {
+    "url": "https://github.com/deleuterio/lett-files-downloader/issues"
+  },
+  "homepage": "https://github.com/deleuterio/lett-files-downloader#readme"
+}

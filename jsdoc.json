@@ -1,0 +1,15 @@
+{
+    "source": {
+      "include": [
+        "index.js",
+        "app"
+      ],
+      "exlude": ["node_modules", ".git"]
+    },
+    "sourceType": "module",
+    "opts": {
+      "encoding": "utf8",
+      "destination": "./docs",
+      "readme": "README.md"
+    }
+  }
