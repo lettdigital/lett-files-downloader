@@ -6,10 +6,12 @@
     "test": true,
     "expect": true,
     "beforeAll": true,
+    "beforeEach": true,
     "describe": true,
     "afterAll": true,
     "afterEach": true,
-    "Promise": true
+    "Promise": true,
+    "Symbol": true
   },
   "parserOptions": {
     "sourceType": "module",
