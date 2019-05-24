@@ -31,9 +31,7 @@ class FilesDownloader {
         this.setLog(log);
         this.setHeaders(headers);
         this.setFileInUrl(fileInUrl);
-        this.buffer = [];
-        this.queueFinished = 0;
-        this.downloaderResult = [];
+        this.resetProperties();
     }
     /**
      * @description A setter for path
@@ -80,6 +78,10 @@ class FilesDownloader {
      */
     async downloadBatch(urls) {
         this.urls = urls;
+        this.urlsLength = urls.length;
+
+        // Reset properties
+        this.resetProperties();
 
         // Initialize buffer
         await this.downloadManager();
@@ -87,12 +89,18 @@ class FilesDownloader {
         return this.downloaderResult;
     }
 
+    resetProperties() {
+        this.buffer = [];
+        this.queueFinished = 0;
+        this.downloaderResult = [];
+    }
+
     downloadManager() {
         return new Promise(resolve => {
             const { parallelDownloads } = this;
             for (let index = 0; index < parallelDownloads; index++) {
                 this.downloadQueue(index).then(() => {
-                    if (this.queueFinished === parallelDownloads) {
+                    if (this.downloaderResult.length === this.urlsLength) {
                         resolve();
                     }
                 });
@@ -111,8 +119,6 @@ class FilesDownloader {
             } finally {
                 await this.downloadQueue(index);
             }
-        } else {
-            this.queueFinished++;
         }
     }
 
