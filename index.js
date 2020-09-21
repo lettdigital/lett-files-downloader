@@ -4,6 +4,7 @@ const request = require('request');
 // eslint-disable-next-line no-useless-escape
 const regex = /((?!\/)[\w\_\-\+]+\.(\w{3,5})$)/i;
 
+const LIMIT_RETRY = 3;
 /**
  * @class
  * @description A class to manager multiple simultaneous downloads
@@ -77,6 +78,8 @@ class FilesDownloader {
      * @returns {downloaderResult[]} A status of each download
      */
     async downloadBatch(urls) {
+        this.log.debug(`[DOWNLOAD BATCH] Init - urls length = ${urls.length}`);
+
         this.urls = urls;
         this.urlsLength = urls.length;
 
@@ -96,6 +99,7 @@ class FilesDownloader {
     }
 
     downloadManager() {
+        this.log.debug('[DOWNLOAD MANAGER] Init');
         return new Promise(resolve => {
             const { parallelDownloads } = this;
             for (let index = 0; index < parallelDownloads; index++) {
@@ -111,13 +115,26 @@ class FilesDownloader {
     async downloadQueue(index) {
         if (this.urls.length) {
             const url = this.urls.shift();
-            try {
-                await this.downloadFile(url);
-                this.downloaderResult.push({ key: url.key, status: 'SUCCESS' });
-            } catch (err) {
-                this.downloaderResult.push({ key: url.key, status: 'FAIL' });
-            } finally {
-                await this.downloadQueue(index);
+            this.log.debug(`[DOWNLOAD QUEUED] Init Index=${index}`, url);
+            await this.downloadRetry(url);
+            await this.downloadQueue(index);
+        }
+        this.log.debug(`[DOWNLOAD QUEUED] Finish Index=${index} no more urls to download`);
+    }
+
+    async downloadRetry(url, retry = 0) {
+        try {
+            await this.downloadFile(url);
+            this.log.debug(`[DOWNLOAD FILE] Success url=${url.url}`, url);
+            this.downloaderResult.push({ key: url.key, status: 'SUCCESS' });
+        } catch (err) {
+            if (retry < LIMIT_RETRY) {
+                retry++;
+                this.log.warn(`[DOWNLOAD FILE] Pending, retry ${retry} - url=${url.url}`, err);
+                await this.downloadRetry(url, retry);
+            } else {
+                this.log.error(`[DOWNLOAD FILE] Fail - url=${url.url}`, err);
+                this.downloaderResult.push({ key: url.key, status: 'FAIL', details: err });
             }
         }
     }
@@ -133,7 +150,7 @@ class FilesDownloader {
             request.head(url, (err, res) => {
                 if (!err && res && res.statusCode === 200) {
                     let size = 0;
-
+                    this.log.debug(`[DOWNLOAD FILE] Downloading url=${url}`);
                     request({ url, headers })
                         .on('data', data => {
                             size = data.length;
@@ -154,7 +171,7 @@ class FilesDownloader {
                             }
                         });
                 } else {
-                    reject({ msg: 'File not exists' });
+                    reject({err, msg: `[DOWNLOAD FILE] Download fail url=${url}`});
                 }
             });
         });
