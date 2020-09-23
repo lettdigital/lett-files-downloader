@@ -103,6 +103,7 @@ class FilesDownloader {
         return new Promise(resolve => {
             const { parallelDownloads } = this;
             for (let index = 0; index < parallelDownloads; index++) {
+                this.log.debug(`[DOWNLOAD QUEUE] Init queue=${index}`);
                 this.downloadQueue(index).then(() => {
                     if (this.downloaderResult.length === this.urlsLength) {
                         resolve();
@@ -115,26 +116,26 @@ class FilesDownloader {
     async downloadQueue(index) {
         if (this.urls.length) {
             const url = this.urls.shift();
-            this.log.debug(`[DOWNLOAD QUEUED] Init Index=${index}`, url);
             await this.downloadRetry(url);
             await this.downloadQueue(index);
+        } else {
+            this.log.debug(`[DOWNLOAD QUEUE] Finished queue=${index} no more urls to download`);
         }
-        this.log.debug(`[DOWNLOAD QUEUED] Finish Index=${index} no more urls to download`);
     }
 
     async downloadRetry(url, retry = 0) {
         try {
             await this.downloadFile(url);
-            this.log.debug(`[DOWNLOAD FILE] Success url=${url.url}`, url);
             this.downloaderResult.push({ key: url.key, status: 'SUCCESS' });
+            this.log.debug(`[DOWNLOAD FILE] Success url=${url.url}`, {...url, downloaderResult: this.downloaderResult.length});
         } catch (err) {
             if (retry < LIMIT_RETRY) {
                 retry++;
-                this.log.warn(`[DOWNLOAD FILE] Pending, retry ${retry} - url=${url.url}`, err);
+                this.log.warn(`[DOWNLOAD FILE] Pending, retry ${retry} - url=${url.url}`, url);
                 await this.downloadRetry(url, retry);
             } else {
-                this.log.error(`[DOWNLOAD FILE] Fail - url=${url.url}`, err);
                 this.downloaderResult.push({ key: url.key, status: 'FAIL', details: err });
+                this.log.error(`[DOWNLOAD FILE] Fail - url=${url.url}`, {...err, ...url, downloaderResult: this.downloaderResult.length});
             }
         }
     }
@@ -150,7 +151,6 @@ class FilesDownloader {
             request.head(url, (err, res) => {
                 if (!err && res && res.statusCode === 200) {
                     let size = 0;
-                    this.log.debug(`[DOWNLOAD FILE] Downloading url=${url}`);
                     request({ url, headers })
                         .on('data', data => {
                             size = data.length;
@@ -171,7 +171,7 @@ class FilesDownloader {
                             }
                         });
                 } else {
-                    reject({err, msg: `[DOWNLOAD FILE] Download fail url=${url}`});
+                    reject({err, msg: `Download fail url=${url}`});
                 }
             });
         });
